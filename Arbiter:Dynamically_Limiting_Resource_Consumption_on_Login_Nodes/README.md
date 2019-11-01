@@ -1,5 +1,7 @@
 # Arbiter: Dynamically Limiting Resource Consumption on Login Nodes
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3525368.svg)](https://doi.org/10.5281/zenodo.3525368)
+
 **Authors:**
 * Dylan Gardner, University of Utah
 * Robben Migacz, University of Utah
