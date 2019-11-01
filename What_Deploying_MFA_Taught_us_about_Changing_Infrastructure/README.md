@@ -1,5 +1,7 @@
 # What Deploying MFA Taught Us About Changing Infrastructure
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3525375.svg)](https://doi.org/10.5281/zenodo.3525375)
+
 **Authors:**
 * Abe Singer, National Energy Research Scientific Computing Center
 * Shane Canon, National Energy Research Scientific Computing Center
