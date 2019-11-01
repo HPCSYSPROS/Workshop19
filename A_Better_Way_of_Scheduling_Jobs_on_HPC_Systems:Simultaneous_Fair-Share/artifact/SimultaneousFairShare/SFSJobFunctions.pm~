@@ -1,0 +1,77 @@
+#!/usr/bin/perl
+use strict;
+
+package SimultaneousFairShare::SFSJobFunctions;
+use base 'Exporter';
+use SimultaneousFairShare::SFSUtil;
+use Fcntl qw(:flock SEEK_SET);
+our @EXPORT = ('sfs_add_new_job');
+
+######## job file format (one item per line for easy parsing)
+# line 1: username
+# line 2: num nodes
+# line 3: requested waltime in seconds
+# line 4: time (in seconds) job originally created
+# line 5: time (in seconds) since counters last updated
+###  subsequent lines are either of the form: 
+###     SSSSS=B TTTTTTTTT (for binary yes/no states)
+###          where "SSSSS" is the NAME of the state
+###          B (for "boolean") which is either "Y" or "N" 
+###          and TTTTTTTTT is the total time in seconds that the job spent in the "Y" state
+###     PPPPP=VVVVVVV  (for parameter name/value pairs)
+###          where PPPPP is the name of the parameter
+###          and VVVVVVV is the value of that parameter
+# the order of the lines (after the first five) don't mean anything.  Practically they will end up 
+# mostly in a set order, but the state of a job can always be changed by appending a state tag 
+# or a parameter tag.  
+
+sub sfs_add_new_job{
+    my $username=$_[0];
+    my $n_nodes=$_[1];
+    my $req_walltime=$_[2];
+    my $current_time=sfs_get_time();
+    my $last_modified_time=$current_time;
+
+    if ($username eq ""){ die "sfs_add_new_job: first argument must be username!\n";}
+    if ($n_nodes == 0){ die "sfs_add_new_job: second argument must be a non-zero number of nodes!\n";}
+
+    if($req_walltime eq ""){ die "sfs_add_new_job: third argument must be requested wall time!\n";}
+    if($req_walltime < 1){ die "sfs_add_new_job: req wall time (3rd arg) must be at least 1!\n";}
+
+    if($n_nodes < 1){ die "sfs_add_new_job: numb nodes (2nd arg) must be at least 1 node!\n";}
+    
+    my $global_lock=sfs_lock_shared_global();
+
+    my $my_lock_0=sfs_lock_sfs_core();
+    open my $nextjob_fh,"+<","./sfs_core/next_job" or die "sfs_add_new_job could not open next_job file!\n";
+    my $next_job_num=<$nextjob_fh>;
+    seek $nextjob_fh,0,SEEK_SET;
+    my $new_next_job_num = int($next_job_num)+1;
+    my $new_next_job_str = sprintf("%09d\n",$new_next_job_num);
+    print $nextjob_fh "$new_next_job_str\n";
+    sfs_unlock_sfs_core($my_lock_0); 
+   
+    my $new_base_job_filename=sprintf("%09d",$next_job_num);
+    my $new_job_filename="./jobs_queued/".$new_base_job_filename;
+    if( -e $new_job_filename ){ die "ERROR!  New job filename already exists: $new_job_filename\n";}
+
+    my $my_lock_1=sfs_lock_jobs_queued();
+    open my $new_job_fh,">",$new_job_filename or die "could not open $new_job_filename to create job!";
+    # core job file header
+    print $new_job_fh "$username\n";
+    print $new_job_fh "$n_nodes\n";
+    printf $new_job_fh "%09d\n",$req_walltime;
+    print $new_job_fh "$current_time\n";
+    print $new_job_fh "$last_modified_time\n";
+    # supplementary information
+    print $new_job_fh "eligible=Y 000000000\n";
+    
+    # done, now close file
+    close $new_job_fh;
+    sfs_unlock_jobs_queued($my_lock_1);
+    
+    sfs_unlock_global($global_lock);
+    
+    return $new_base_job_filename;
+}
+

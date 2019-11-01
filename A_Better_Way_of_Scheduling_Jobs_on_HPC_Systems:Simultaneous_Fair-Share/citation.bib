@@ -1,0 +1,13 @@
+@InProceedings{SteffenHPCSYSPROS19,
+author = {Steffen, Craig P },
+title = {A Better Way of Scheduling Jobs on HPC Systems: Simultaneous Fair-Share},
+doi = {},
+url = {https://github.com/HPCSYSPROS/Workshop19/tree/master/A_Better_Way_of_Scheduling_Jobs_on_HPC_Systems:Simultaneous_Fair-Share},
+booktitle = {In HPCSYSPROS19: HPC System Professionals Workshop},
+year = {2019},
+month = {November},
+address = {Denver, CO},
+abstract = { Typical HPC job scheduler software determines scheduling order by a linear sum of weighted priority terms. When a system has a rich mix of job types, this makes it difficult to maintain good productivity across diverse user groups. Currently-implemented fair-share algorithms tweak priority calculations based on \emph{past} job handling by modifying priority, but don't fully solve problems of queue-stuffing and various classes of under-served job types, because of coupling between different terms of the linear calculated priority .
+
+This paper proposes a new scheme of scheduling jobs on an HPC system called "Simultaneous Fair-share'' (or "SFS'') that works by considering the jobs already committed to run in a given time slice and adjusting which jobs are selected to run accordingly. This allows high-throughput collaborations to get lots of jobs run, but avoids the problems of some groups starving out others due to job characteristics, all while keeping system administrators from having to directly manage job schedules. This paper presents Simultaneous Fair-share in detail, with examples, and shows testing results using a job throughput and scheduler simulation.}
+}

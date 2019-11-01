@@ -1,0 +1,52 @@
+Code artifact for submission with submission to HPCSYSPROS 2019 workshop titled: 
+"A Better Way of Scheduling Jobs on HPC Systems: Simultaneous Fair-Share"
+by Craig Steffen 
+csteffen@ncsa.illinois.edu
+submitted August 23, 2019
+
+This .tar.gz archive contains the code that ran the simulation to
+produce the graphs that are in the paper.  This simulation and the
+accompanying scripts are entirely original to this project.  The only
+pre-requesites are bash and python.  
+
+The sfs_core, jobs_running, jobs_queued, and jobs_done are utility
+directories that are part of the simulation while running.  The
+directory SimultaneousFairShare director contains the perl code that
+implements the functions of the scheduler simulation.  
+
+The sfs_do_new_time_iteration.pl function is the core of the
+simulation.  It has all the steps to perform one time step.  All of
+the other .bash and perl scripts in the main directory drive the
+simulation.  
+
+How to run the simulation described in the paper: 
+
+Scheduling constants are the top of
+SimultaneousFairShare/SFSLinearPriority.pm.  Edit that file to set
+node-dominant vs. eligible-time dominant schedule weighting.   
+
+source sfs_RESET.src to reset the simulation.  
+
+modify sfs_do_new_time_iteration.pl to select pure_priority scheduling or SFS scheduling. 
+
+run sfs_sequence_B.bash to run the full 14-odd simulated days
+(simulation will run until jobs are depleted).  Simulation runs about
+15 minutes real time on my laptop.  You'll need to make sure that the
+jobs_queued and jobs_running directories are empty.  If they're not,
+then run sfs_do_one_day.pl, then check those directories again.  Keep
+running the one_day script until the running and queued directories
+are empty.  
+
+Then run the sfs_stash_results.pl script.  That will create a results
+directory to hold the finished job files with their run records.  Go
+into the results directory and run: 
+../sfs_plot_jobs.pl > results.py
+This will generate a plot file containing the job data in plotable
+form, the same graphs that are in the figures in this paper.  Run them
+as follows: 
+ipython 
+run results.py
+plt.show()
+
+You can then manipulate or save the resulting graph file.
+

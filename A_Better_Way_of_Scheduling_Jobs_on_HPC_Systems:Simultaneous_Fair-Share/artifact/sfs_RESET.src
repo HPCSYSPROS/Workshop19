@@ -1,0 +1,2 @@
+rm -f jobs_*/0*
+echo "00000" > sfs_core/number_of_nodes_occupied
