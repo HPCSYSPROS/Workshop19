@@ -1,5 +1,7 @@
 # Implementing a Common HPC Environment in a Multi-User Spack Instance
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3525373.svg)](https://doi.org/10.5281/zenodo.3525373)
+
 **Authors:**
 * Carson Woods, University of Tennessee at Chattanooga
 * Matthew L. Curry, Sandia National Laboratories
