@@ -1,5 +1,7 @@
 # Using GUFI in Data Management
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3525371.svg)](https://doi.org/10.5281/zenodo.3525371)
+
 **Authors:**
 * Chris Hoffman, National Center for Atmospheric Research
 * Bill Anderson, National Center for Atmospheric Research
