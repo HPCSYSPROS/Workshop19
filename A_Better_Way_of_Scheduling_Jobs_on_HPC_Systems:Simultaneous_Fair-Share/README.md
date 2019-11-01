@@ -1,5 +1,7 @@
 # A Better Way of Scheduling Jobs on HPC Systems: Simultaneous Fair-Share
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3525381.svg)](https://doi.org/10.5281/zenodo.3525381)
+
 **Author:**
 * Craig P Steffen, NCSA: University of Illinois
 
