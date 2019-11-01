@@ -1,5 +1,7 @@
 # Decoupling OpenHPC Critical Services
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3525364.svg)](https://doi.org/10.5281/zenodo.3525364)
+
 **Authors:**
 * Jacob Chapell, University of Kentucky
 * Bhushan Chitre, University of Kentucky
