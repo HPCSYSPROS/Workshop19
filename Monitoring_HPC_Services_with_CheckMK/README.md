@@ -1,5 +1,7 @@
 # Monitoring HPC Services with CheckMK
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3525377.svg)](https://doi.org/10.5281/zenodo.3525377)
+
 **Authors:**
 * Philip Cass, EPCC, University of Edinburgh
 * Kieran Leach, EPCC, University of Edinburgh
