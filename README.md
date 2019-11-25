@@ -9,5 +9,5 @@
 ### [Chameleon: How to Build a Cloud++](Keynote/keynote_presentation.pdf)
 **Keynote Speaker:** Kate Keahey
 
-### [Decoupling OpenHPC Critical Services] (Decoupling_OpenHPC_Critical_Services/Decoupling_OpenHPC_Critical_Services.pdf) [[presentation](Decoupling_OpenHPC_Critical_Services/Presentation.pdf)]
+### [Decoupling OpenHPC Critical Services](Decoupling_OpenHPC_Critical_Services/Decoupling_OpenHPC_Critical_Services.pdf) [[presentation](Decoupling_OpenHPC_Critical_Services/Presentation.pdf)]
 ** Authors:** Jacob Chappell, Bhushan Chitre, Vikram Gazula, Lowell Pike, James Griffioen
