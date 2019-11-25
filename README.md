@@ -21,7 +21,7 @@
 ### [Using GUFI in Data Management](Using_GUFI_in_Data_Management/Using_GUFI_in_Data_Management.pdf) [[presentation](Using_GUFI_in_Data_Management/Using_GUFI_in_Data_Management.pdf)] [[source](https://github.com/mar-file-system/GUFI)]
 **Authors:** Christopher Hoffman, Bill Anderson
 
-### [Monitoring HPC Services with CheckMK](Monitoring_HPC_Services_With_CheckMK/Monitoring_HPC_Services_With_CheckMK.pdf) [[presentation](Monitoring_HPC_Services_With_CheckMK/Monitoring_HPC_Services_With_CheckMK.pdf)] [[artifact](Monitoring_HPC_Services_With_CheckMK/artifact)]
+### [Monitoring HPC Services with CheckMK](https://github.com/HPCSYSPROS/Workshop19/blob/master/Monitoring_HPC_Services_with_CheckMK/Monitoring_HPC_Services_With_CheckMK.pdf) [[presentation](https://github.com/HPCSYSPROS/Workshop19/blob/master/Monitoring_HPC_Services_with_CheckMK/Monitoring_HPC_Services_With_CheckMK.pdf)] [[artifact](https://github.com/HPCSYSPROS/Workshop19/tree/master/Monitoring_HPC_Services_with_CheckMK/artifact)]
 **Authors:** Kieran Leach, Philip Cass, Craig Manzi
 
 ### [The Road to Devops HPC Cluster Management](The_Road_to_Devops_HPC_Cluster_Management/The_Road_to_Devops_HPC_Cluster_Management.pdf) [[presentation](The_Road_to_Devops_HPC_Cluster_Management/The_Road_to_Devops_HPC_Cluster_Management.pdf)] [[artifacts](The_Road_to_Devops_HPC_Cluster_Management/artifacts)]
