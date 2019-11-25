@@ -1,0 +1,20 @@
+#!/bin/bash
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+chroot $installroot bash -x << 'CHROOTED'
+	# Do Modules symlinks
+	#
+	MODDIR=/opt/lmod/lmod/init/
+	for shell in sh bash csh
+	do
+		if test -s ${MODDIR}${shell}
+		then
+			ln -sf ${MODDIR}${shell} /etc/profile.d/modules.$shell
+		fi
+	done
+CHROOTED

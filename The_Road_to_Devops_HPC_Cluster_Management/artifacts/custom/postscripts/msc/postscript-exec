@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -x
+scriptdir=$1
+shift
+
+for i in $scriptdir/*
+do
+	if [ -x $i ]
+	then
+		if ! $i $*
+		then
+			set +x
+			echo "Error executing $i postscript"
+			# exit 1
+			set -x
+		fi
+	fi
+done

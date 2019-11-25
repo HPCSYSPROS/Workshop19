@@ -1,0 +1,16 @@
+#!/bin/sh
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+MSC_CLUSTER_NAME=`gettab key=msc_cluster_name site.value`
+if [ $? -ne 0 ]
+then
+	echo Error getting cluster name from xCAT
+	exit 1
+fi
+
+chroot $installroot ln -sf /msc/$MSC_CLUSTER_NAME/checks/rc.nodecheck /etc/rc.d/rc.nodecheck

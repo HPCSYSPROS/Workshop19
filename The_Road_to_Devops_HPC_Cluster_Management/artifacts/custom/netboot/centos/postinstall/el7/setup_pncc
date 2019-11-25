@@ -1,0 +1,37 @@
+#!/bin/bash -xe
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+MSC_CLUSTER_NAME=`gettab key=msc_cluster_name site.value`
+
+case $MSC_CLUSTER_NAME in
+  felicia)
+    ARCHIVE_HOST=archive-0-dev.my.emsl.pnl.gov
+  ;;
+  cascade)
+    ARCHIVE_HOST=archive-0-prod.my.emsl.pnl.gov
+  ;;
+esac
+
+chroot $installroot bash -x << CHROOTED
+set -xe
+. /opt/rh/rh-python36/enable
+if [[ ! -f /opt/pncc/bin/activate ]] ; then
+  python -m virtualenv /opt/pncc
+fi
+. /opt/pncc/bin/activate
+pip install \
+  --upgrade \
+  --proxy http://proxy01.pnl.gov:3128 \
+  pacifica-cli==0.1.2 pacifica-downloader==0.2.3 pacifica-uploader==0.2.0 \
+  pyyaml
+deactivate
+git clone ssh://stash.pnnl.gov:7999/mscops/pncc-workflow-scripts.git /opt/pncc/pncc-workflow-scripts
+CHROOTED
+
+# We still need to add the cronjob.sh file to a crontab though we are still figuring out how frequent
+# to make that run so not yet.

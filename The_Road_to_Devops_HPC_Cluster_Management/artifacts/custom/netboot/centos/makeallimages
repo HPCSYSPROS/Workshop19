@@ -1,0 +1,34 @@
+#!/bin/bash -x 
+images="compute login service mgmt datamover cuda"
+MSC_CLUSTER_NAME=`gettab key=msc_cluster_name site.value`
+if [ $? -ne 0 ]
+then
+	echo Error getting cluster name from xCAT
+	exit 1
+fi
+if [ ${MSC_CLUSTER_NAME}x != feliciax ]
+then 
+	images="$images sched"
+fi
+for i in $images
+do
+	/install/custom/netboot/centos/makeimage $i $* &
+done
+BUILDFAILED=false
+for i in $(jobs -p)
+do
+	if ! wait $i
+	then
+		BUILDFAILED=true
+	fi
+done
+if $BUILDFAILED
+then
+	set +x
+	echo "********************"
+	echo "********************"
+	echo "*** BUILD FAILED ***"
+	echo "********************"
+	echo "********************"
+	exit 1
+fi

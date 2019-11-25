@@ -1,0 +1,10 @@
+#!/bin/sh
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+chroot $installroot bash -x << 'CHROOTED'
+	systemctl enable opensm
+CHROOTED

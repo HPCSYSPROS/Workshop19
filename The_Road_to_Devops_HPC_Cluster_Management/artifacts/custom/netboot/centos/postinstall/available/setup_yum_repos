@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Do Slurm symlinks
+#
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+OSIMAGE="$osver-$arch-netboot-$profile"
+REPOURL=`lsdef -t osimage $OSIMAGE -i pkgdir -c | sed 's/.*pkgdir=//'`
+REPONAME=`echo $REPOURL | sed 's"/$""' | sed 's".*/\([^/]\+\)$"\1"'`
+REPOFILE="$installroot/etc/yum.repos.d/config.repo"
+
+cat > $REPOFILE <<REPO_CONTENT
+[${REPONAME}]
+name=$REPONAME
+baseurl=$REPOURL
+enabled=1
+priority=99
+gpgcheck=0
+REPO_CONTENT
+
+rm -f $installroot/etc/cron.daily/yum-autoupdate

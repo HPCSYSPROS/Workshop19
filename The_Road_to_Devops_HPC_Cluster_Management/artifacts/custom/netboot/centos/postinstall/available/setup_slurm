@@ -1,0 +1,54 @@
+#!/bin/bash
+#
+# Do Slurm symlinks
+#
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+# Slurm configs are symlinks to the /msc mount.
+# This appends the 'msc.mount' systemd unit to the
+# list of dependencies, so the service does not attempt
+# to start before the config files are present.
+
+CFGPATH=$installroot/usr/lib/systemd/system/
+
+grep "^After=.*msc.mount" ${CFGPATH}slurmd.service || echo "g/^After=/s/$/ msc.mount/
+w
+q
+" | /usr/bin/ed ${CFGPATH}slurmd.service
+
+DEST="/etc/slurm/"
+_cluster=`gettab key=msc_cluster_name site.value`
+if [ $? -ne 0 ]
+then
+	echo Error getting cluster name from xCAT
+	exit 1
+fi
+
+chroot $installroot bash -x << CHROOTED
+	userdel munge
+	groupdel munge
+	groupadd -g 498 munge
+	useradd -c 'Runs Uid N Gid Emporium' -d /var/run/munge -g 498 -M -s /sbin/nologin -u 497 munge
+	rpm -V munge | awk '\$1 ~ /U/{system("chown munge:munge "\$2)}'
+	systemctl enable munge
+
+	# Hack to get munge working...
+	chmod g-w /etc/
+ 
+    #nss_slurm needs this to be quiet
+    mkdir -p /var/spool/slurmd
+
+	mkdir -p $DEST
+	ln -sf "/msc/$_cluster/slurm/etc/gres.conf" $DEST
+	ln -sf "/msc/$_cluster/slurm/etc/job_submit.lua" $DEST
+	ln -sf "/msc/$_cluster/slurm/etc/knl_generic.conf" $DEST
+	ln -sf "/msc/$_cluster/slurm/etc/slurm.conf" $DEST
+	ln -sf "/msc/$_cluster/slurm/etc/slurmdbd.conf" $DEST
+	ln -sf "/msc/$_cluster/slurm/etc/topology.conf" $DEST
+	ln -sf "/msc/$_cluster/slurm/etc/wiki.conf" $DEST
+CHROOTED

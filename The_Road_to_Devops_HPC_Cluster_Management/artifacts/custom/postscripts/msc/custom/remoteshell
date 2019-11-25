@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# override xCAT's remoteshell to work around Match block incompat
+# remove when https://github.com/xcat2/xcat-core/pull/6405 is released
+cp /xcatpost/msc/custom/msc_remoteshell /xcatpost/remoteshell
+/xcatpost/msc_remoteshell $*
+echo $?

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+SUBNET=`/opt/xcat/bin/gettab mgtifname=ib0 networks.mask`
+if [ $? -ne 0 ]
+then
+	echo Error getting subnetmask from xCAT
+	exit 1
+fi
+
+cat > $installroot/etc/sysconfig/network-scripts/ifcfg-ib0 << INTERFACEFILE
+DEVICE=ib0
+IPADDR=\$(awk '/'\$(hostname -s)'ib/{print \$1}' /etc/hosts)
+NETMASK=$SUBNET
+ONBOOT=yes
+INTERFACEFILE

@@ -1,0 +1,8 @@
+rh-python36-python-pip
+rh-python36-python-virtualenv
+rh-python36-python-wheel
+mariadb-server
+mariadb-devel
+mariadb
+redis
+libtirpc-devel

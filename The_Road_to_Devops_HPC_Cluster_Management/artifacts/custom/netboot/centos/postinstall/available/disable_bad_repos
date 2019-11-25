@@ -1,0 +1,15 @@
+#!/bin/bash
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+chroot $installroot bash -x << 'CHROOTED'
+	badrepos=$(sed -n 's/^\[\(.*\)\]/\1/p' /etc/yum.repos.d/CentOS-*)
+	for i in $badrepos
+	do
+		yum-config-manager --disable $i -q -d0 > /dev/null
+	done
+CHROOTED

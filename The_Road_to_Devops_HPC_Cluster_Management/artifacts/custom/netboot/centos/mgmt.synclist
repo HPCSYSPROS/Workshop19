@@ -1,0 +1,19 @@
+/install/custom/commonfiles/cron/cron.d/lustre-space-use -> (singleton) /etc/cron.d/lustre-space-use
+/install/custom/commonfiles/cron/cron.d/slurm-graphite -> (singleton) /etc/cron.d/slurm-graphite
+/install/custom/commonfiles/cron/cron.d/slurm-squeue-info -> (singleton) /etc/cron.d/slurm-squeue-info
+/install/custom/commonfiles/cron/cron.daily/clean_login_shm.sh -> (singleton) /etc/cron.daily/clean_login_shm.sh
+/install/custom/commonfiles/cron/cron.daily/sacct_to_mpp2summ_cascade.pl -> (singleton) /etc/cron.daily/sacct_to_mpp2summ_cascade.pl
+/install/custom/commonfiles/cron/cron.hourly/sark-ddn.sh -> (gman1) /etc/cron.hourly/sark-ddn.sh
+/install/custom/commonfiles/cron/cron.hourly/uha_oasis -> (gman1) /etc/cron.hourly/uha_oasis
+/install/custom/commonfiles/collectd.conf.mgmt -> (gman1) /etc/collectd.conf
+/install/custom/commonfiles/collectd.conf.mgmt.post -> (gman1) /etc/collectd.conf.post
+/install/custom/commonfiles/collectd.conf.mgmt.felicia -> (fman1) /etc/collectd.conf
+/install/custom/commonfiles/collectd.conf.mgmt.felicia.post -> (fman1) /etc/collectd.conf.post
+/install/custom/commonfiles/mgmt/etc/robinhood.d/dtemp.conf -> (singleton) /etc/robinhood.d/dtemp.conf
+/install/custom/commonfiles/mgmt/etc/sysconfig/robinhood -> (singleton) /etc/sysconfig/robinhood
+/install/custom/commonfiles/cron/cron.d/robinhood-use -> (gman1) /etc/cron.d/robinhood-use
+/install/custom/commonfiles/my.cnf -> (gman1) /etc/my.cnf
+/etc/mcp-priv.conf -> /etc/
+EXECUTE:
+/install/custom/commonfiles/collectd.conf.mgmt.post
+/install/custom/commonfiles/collectd.conf.mgmt.felicia.post

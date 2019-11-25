@@ -1,0 +1,18 @@
+#!/bin/sh
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+chroot $installroot bash -x << 'CHROOTED'
+	if ! grep -q '/scratch' /etc/fstab
+	then
+		echo 'LABEL=scratchfs /scratch                xfs     noauto,defaults        1 2' >> /etc/fstab
+	fi
+
+	if [ ! -e /scratch ]
+	then
+		mkdir /scratch
+	fi
+CHROOTED

@@ -1,0 +1,25 @@
+#!/bin/sh
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+# Slurm configs are symlinks to the /msc mount.
+# This appends the 'msc.mount' systemd unit to the
+# list of dependencies, so the service does not attempt
+# to start before the config files are present.
+
+CFGPATH=$installroot/usr/lib/systemd/system/
+
+for i in slurmctld slurmdbd; do
+grep "^After=.*msc.mount" ${CFGPATH}${i}.service || echo "g/^After=/s/$/ msc.mount/
+w
+q
+" | /usr/bin/ed ${CFGPATH}${i}.service
+done
+
+chroot $installroot bash -x << 'CHROOTED'
+	systemctl enable slurmdbd
+	systemctl enable slurmctld
+CHROOTED

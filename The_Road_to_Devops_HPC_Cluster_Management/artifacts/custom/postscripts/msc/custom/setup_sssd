@@ -1,0 +1,7 @@
+#!/bin/sh -x
+. /etc/nodeinfo
+
+chmod 600 /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+chown root.root /etc/sssd/sssd.conf /etc/sssd/conf.d/*.conf
+cacertdir_rehash /etc/pki/tls/certs/
+systemctl restart sssd

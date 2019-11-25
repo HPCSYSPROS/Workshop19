@@ -1,0 +1,1 @@
+#imagename,template,boottarget,addkcmdline,pkglist,pkgdir,otherpkglist,otherpkgdir,exlist,postinstall,rootimgdir,kerneldir,nodebootif,otherifce,netdrivers,kernelver,krpmver,permission,dump,crashkernelsize,partitionfile,driverupdatesrc,comments,disable

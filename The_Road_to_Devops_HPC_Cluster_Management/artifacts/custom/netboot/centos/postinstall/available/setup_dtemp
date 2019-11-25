@@ -1,0 +1,40 @@
+#!/bin/bash -x
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+MSC_CLUSTER_NAME=`gettab key=msc_cluster_name site.value`
+if [ $? -ne 0 ]
+then
+	echo Error getting cluster name from xCAT
+	exit 1
+fi
+
+chroot $installroot bash -x << CHROOTED
+	if ! grep -q '/dtemp' /etc/fstab
+	then
+		case $MSC_CLUSTER_NAME in
+			felicia)
+				echo '0.0.0.0@o2ib:/dtemp /dtemp  lustre  rw,nosuid,_netdev,user_xattr,x-systemd.requires=lustre.service    0 0' >> /etc/fstab
+				;;
+			cascade)
+				echo "0.0.0.0@o2ib6:0.0.0.0@o2ib6:/dtemp	/dtemp	lustre	rw,user_xattr,nosuid,_netdev,x-systemd.requires=lustre.service	0 0" >> /etc/fstab
+				;;
+			*)
+				echo Help im lost on an unknown cluster!!!
+				exit 1
+				;;
+		esac
+	fi
+
+	if [ ! -e /dtemp ]
+	then
+		mkdir /dtemp
+	fi
+
+	# kills the genimage; lustre unit file is installed by syncfiles (too late for this)
+	#systemctl enable lustre
+CHROOTED

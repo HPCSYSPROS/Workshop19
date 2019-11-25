@@ -1,0 +1,13 @@
+mdadm
+xfsprogs
+vim-enhanced
+389-ds
+munge
+collectd
+collectd-python
+collectd-collection3
+collectd-disk
+collectd-perl
+collectd-rrdtool
+nwperf
+python-zmq

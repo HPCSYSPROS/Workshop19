@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo NodeName=`hostname`  > /etc/nss_slurm.conf
+

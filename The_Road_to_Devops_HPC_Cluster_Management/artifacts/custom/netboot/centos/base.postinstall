@@ -1,0 +1,24 @@
+#!/bin/sh
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+set -x
+script=`basename $0`
+scriptdir=/install/custom/netboot/centos/postinstall/${script/.postinstall/}/
+
+for i in $scriptdir/*
+do
+	if [ -x $i ]
+	then
+		if ! $i $*
+		then
+			set +x
+			echo "Error executing $i postinstall"
+			exit 1
+		fi
+	fi
+done

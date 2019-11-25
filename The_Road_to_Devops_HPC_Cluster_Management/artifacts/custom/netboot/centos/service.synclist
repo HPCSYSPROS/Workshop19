@@ -1,0 +1,7 @@
+/install/custom/commonfiles/limits.conf -> /etc/security/
+/install/custom/commonfiles/sysctl.conf.service -> /etc/sysctl.conf
+/etc/hosts -> /etc/hosts
+/install/custom/commonfiles/munge.key -> /etc/munge/munge.key
+/install/custom/commonfiles/collectd.conf.service -> /etc/collectd.conf
+/install/custom/commonfiles/49-udev-kill-mics.rules -> /etc/udev/rules.d/
+/install/custom/commonfiles/nagios/* -> /

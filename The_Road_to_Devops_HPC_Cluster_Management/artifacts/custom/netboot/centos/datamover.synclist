@@ -1,0 +1,13 @@
+/install/custom/commonfiles/myemsl/redis.conf -> /etc/redis.conf
+/install/custom/commonfiles/myemsl/cart.server.conf -> /opt/myemsl/cart.server.conf
+/install/custom/commonfiles/myemsl/archiveinterface-cp.conf -> /opt/myemsl/archiveinterface-cp.conf
+/install/custom/commonfiles/myemsl/cartd.service -> /etc/systemd/system/cartd.service
+/install/custom/commonfiles/myemsl/cartwsgi.service -> /etc/systemd/system/cartwsgi.service
+/install/custom/commonfiles/myemsl/archiveinterface.service -> /etc/systemd/system/archiveinterface.service
+/install/custom/commonfiles/myemsl/start-cartd.sh -> /opt/myemsl/cartd
+/install/custom/commonfiles/myemsl/start-cartwsgi.sh -> /opt/myemsl/cartwsgi
+/install/custom/commonfiles/myemsl/cluster-env.sh -> /opt/myemsl/cluster-env.sh
+/install/custom/commonfiles/myemsl/start-e1097cars.sh -> /opt/e1097cars/e1097cars
+/install/custom/commonfiles/myemsl/start-archiveinterface.sh -> /opt/myemsl/archiveinterface
+/install/custom/commonfiles/myemsl/e1097cars.service -> /etc/systemd/system/e1097cars.service
+/install/custom/commonfiles/login/var/hpss -> /var

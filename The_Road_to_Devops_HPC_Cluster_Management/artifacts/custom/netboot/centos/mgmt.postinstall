@@ -1,0 +1,8 @@
+#!/bin/sh
+. /install/custom/netboot/centos/base.postinstall
+
+# because we don't have a scheduler node on felicia, we need to override the mgmt nodes.
+if [ `gettab key=msc_cluster_name site.value`x == feliciax ]
+then
+	/install/custom/netboot/centos/sched.postinstall $*
+fi

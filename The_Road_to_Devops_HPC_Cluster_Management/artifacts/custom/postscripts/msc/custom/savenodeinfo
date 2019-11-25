@@ -1,0 +1,15 @@
+#!/bin/bash
+export XCATHOST=$MASTER:$XCATDPORT
+
+/xcatpost/xcatclient -d
+
+#
+# Fix nsswitch.conf file to remove myhostname stuff from hosts
+sed -i 's/ myhostname//g' /etc/nsswitch.conf
+
+/opt/xcat/bin/lsdef $NODE | grep = | /bin/sed -e 's="=\\"=g' -e 's/ *\([^=]*\)=\(.*\)/\1="\2"/' > /etc/nodeinfo
+echo 'admins="'$(/opt/xcat/bin/nodels admin)'"' >> /etc/nodeinfo
+#. /etc/nodeinfo
+#HOSTNAME=$NODE
+hostname $NODE
+#export HOSTNAME=$HOSTNAME

@@ -1,0 +1,9 @@
+./usr/share/man/*
+./usr/share/i18n*
+./var/cache/yum*
+./usr/share/doc*
+./usr/share/gnome*
+./usr/share/cracklib*
+./usr/share/info*
+./usr/share/omf*
+./install*

@@ -1,0 +1,12 @@
+/install/custom/commonfiles/login/ -> /
+/install/custom/commonfiles/sssd-enumerate.conf -> /etc/sssd/conf.d/
+# RSA block begin
+# host-specific files
+/install/custom/commonfiles/rsa/var/ace/securid.glogin1 -> (glogin1) /var/ace/securid
+/install/custom/commonfiles/rsa/var/ace/securid.glogin2 -> (glogin2) /var/ace/securid
+/install/custom/commonfiles/rsa/var/ace/securid.glogin3 -> (glogin3) /var/ace/securid
+/install/custom/commonfiles/rsa/var/ace/securid.flogin1 -> (flogin1) /var/ace/securid
+/install/custom/commonfiles/rsa/var/ace/securid.ghep1 -> (ghep1) /var/ace/securid
+
+/install/custom/commonfiles/rsa/var/ace/ -> /var/ace/
+# RSA block end

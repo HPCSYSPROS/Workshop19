@@ -1,0 +1,27 @@
+#!/bin/bash
+
+installroot=$1
+osver=$2
+arch=$3
+profile=$4
+workdir=$5
+
+chroot $installroot bash -x << 'CHROOTED'
+	mkdir /archive
+	adduser -r hpss -s /bin/false
+
+	# These RPMs expect the hpss user to exist before they are installed, so they have to be installed here
+	yum install -y \
+		hpss-clnt-7.5.3.0-20190830.u7.el7 \
+		hpss-lib-7.5.3.0-20190830.u7.el7 \
+        hpss-clnt-devel-7.5.3.0-20190830.u7.el7 \
+		hpssfs-fuse-2.0.3-20190903.u2.el7 \
+		hpssfs-fuse-doc-2.0.3-0.noarch
+	rpm -qa | grep hpss
+
+	if ! grep -q '/archive' /etc/fstab
+	then
+		echo '/ 	/archive 	fuse.hpssfs cos=1,stream=16,allow_other,nofail 0 0' >> /etc/fstab
+	fi
+	ln -sf /hpss_src/hpss-7.5.3.0-20190830.u7.el7/ /opt/hpss
+CHROOTED

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# check that there's a scratch partiton
+
+FSINFO=$(lsblk -o label,fstype,name -r -n | grep scratchfs)
+
+if [[ -z $FSINFO ]]
+then
+#
+# No scratchfs filesystem.  We should make one.
+#
+	parted -s /dev/sda mklabel msdos
+	parted -s -- /dev/sda mkpart primary xfs 0 -0
+	echo 1 > /sys/block/sda/device/rescan
+	/sbin/mkfs.xfs -f -L scratchfs /dev/sda1
+fi
+/sbin/mkfs.xfs -f -L scratchfs /dev/disk/by-label/scratchfs
+mount /scratch
+
+exit 0

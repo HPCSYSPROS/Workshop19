@@ -1,0 +1,7 @@
+./usr/share/i18n*
+./var/cache/yum*
+./usr/share/gnome*
+./usr/share/cracklib*
+./usr/share/omf*
+./boot*
+./install*

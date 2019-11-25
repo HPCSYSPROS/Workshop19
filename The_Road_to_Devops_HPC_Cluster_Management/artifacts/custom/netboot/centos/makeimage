@@ -1,0 +1,32 @@
+#!/bin/bash
+
+PROFILE=$1
+REBUILD=$2
+TARGETROOT=`/opt/xcat/bin/gettab imagename=centos7-x86_64-netboot-$PROFILE linuximage.rootimgdir`
+OSIMAGE=centos7-x86_64-netboot-$PROFILE
+
+if [[ $REBUILD == --rebuild && $TARGETROOT == /install/netboot* ]]
+then
+	rm -rf $TARGETROOT --one-file-system
+	mkdir $TARGETROOT
+fi
+
+(
+set -xv
+exec 2>&1
+
+genimage $OSIMAGE
+GENSTATUS=$?
+if [ $GENSTATUS -ne 0 ]
+then
+	set +x
+	echo "**************************************"
+	echo "**************************************"
+	echo "    Error building ${PROFILE}"
+	echo "**************************************"
+	echo "**************************************"
+	exit $GENSTATUS
+fi
+packimage centos7-x86_64-netboot-$PROFILE
+) | tee ${TARGETROOT}/buildlog-`date +%Y-%m-%dT%H:%M:%S`
+exit ${PIPESTATUS[0]}
