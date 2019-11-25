@@ -30,5 +30,5 @@
 ### [What Deploying MFA Taught Us About Changing Infrastructure](What_Deploying_MFA_Taught_us_about_Changing_Infrastructure/What_Deploying_MFA_Taught_Us_About_Changing_Infrastructure.pdf)
 **Authors:** Abe Singer, Shane Canon, Rebecca Hartman-Baker, Kelly L. Rowland, David Skinner, Craig Lant
 
-### [A Better Way of Scheduling Jobs on HPC Systems: Simultaneous Fair-Share](https://github.com/HPCSYSPROS/Workshop19/blob/master/A_Better_Way_of_Scheduling_Jobs_on_HPC_Systems:Simultaneous_Fair-Share/A_Better_Way_of_Scheduling_Jobs_on_HPC_Systems:Simultaneous_Fair-share.pdf) [[artifact](https://github.com/HPCSYSPROS/Workshop19/tree/master/A_Better_Way_of_Scheduling_Jobs_on_HPC_Systems:Simultaneous_Fair-Share/artifact)]
+### [A Better Way of Scheduling Jobs on HPC Systems: Simultaneous Fair-Share](https://github.com/HPCSYSPROS/Workshop19/blob/master/A_Better_Way_of_Scheduling_Jobs_on_HPC_Systems:Simultaneous_Fair-Share/A_Better_Way_of_Scheduling_Jobs_on_HPC_Systems:Simultaneous_Fair-share.pdf) [[presentation](https://github.com/HPCSYSPROS/Workshop19/blob/master/A_Better_Way_of_Scheduling_Jobs_on_HPC_Systems:Simultaneous_Fair-Share/sfs-presentation.ppt)] [[artifact](https://github.com/HPCSYSPROS/Workshop19/tree/master/A_Better_Way_of_Scheduling_Jobs_on_HPC_Systems:Simultaneous_Fair-Share/artifact)]
 **Authors:** Craig P. Steffen
